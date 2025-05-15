@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 
 const api = axios.create({
-    baseURL: "http://localhost:8080/api",
+    baseURL: "/api",
 });
 
 const app = createApp(App)
