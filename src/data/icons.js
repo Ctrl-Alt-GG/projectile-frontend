@@ -9,7 +9,13 @@ import quake3 from "@/assets/gameicons/quake3.png"
 
 import unknown from "@/assets/logo-sarga.svg"
 
-const icons = {cs2, css, factorygame, garrysmod, xonotic, scpsl, mc, quake3, gmod: garrysmod}
+const icons = {
+    cs2, css, factorygame, garrysmod, xonotic, scpsl, mc, quake3,
+    // alias
+    gmod: garrysmod,
+    csgo: cs2,
+    minecraft: mc
+}
 
 export default function getIcon(game) {
     const icon = icons[game];
