@@ -16,7 +16,7 @@
     <b-row class="my-2">
       <b-col>
         <b-card-group columns>
-          <gameserver-card v-for="gameServer in liveData.gameServers" :gameServer="gameServer" class="my-2 p-2" />
+          <gameserver-card-big v-for="gameServer in liveData.gameServers" :gameServer="gameServer" class="my-2 p-2" />
         </b-card-group>
       </b-col>
     </b-row>

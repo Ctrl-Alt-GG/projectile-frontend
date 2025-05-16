@@ -24,6 +24,7 @@ declare module 'vue' {
     BTable: typeof import('bootstrap-vue-next/components/BTable')['BTable']
     BToastOrchestrator: typeof import('bootstrap-vue-next/components/BToast')['BToastOrchestrator']
     GameserverCard: typeof import('./src/components/GameserverCard.vue')['default']
+    GameserverCardBig: typeof import('./src/components/GameserverCardBig.vue')['default']
     NetworkErrorOverlay: typeof import('./src/components/NetworkErrorOverlay.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

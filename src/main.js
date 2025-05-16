@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 
 const api = axios.create({
-    baseURL: "/api",
+    baseURL: "https://2025.ctrl-alt-gg.hu/api",
 });
 
 const app = createApp(App)

@@ -12,7 +12,7 @@
           </b-col>
           <b-col class="text-center">{{ formatPlayerCount(gameServer) }}</b-col>
           <b-col class="text-end">
-            <code class="server-address">{{ gameServer.address }}</code>
+            <code class="server-address-big">{{ gameServer.address }}</code>
           </b-col>
         </b-row>
 
@@ -55,5 +55,9 @@ export default {
 
 
 <style scoped>
+
+code.server-address-big {
+  font-size: 1.5em;
+}
 
 </style>

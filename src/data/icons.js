@@ -14,7 +14,8 @@ const icons = {
     // alias
     gmod: garrysmod,
     csgo: cs2,
-    minecraft: mc
+    minecraft: mc,
+    csstrike: css
 }
 
 export default function getIcon(game) {
