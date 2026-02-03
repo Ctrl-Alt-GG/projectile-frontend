@@ -22,14 +22,22 @@ declare module 'vue' {
     BFormGroup: typeof import('bootstrap-vue-next/components/BFormGroup')['BFormGroup']
     BFormTextarea: typeof import('bootstrap-vue-next/components/BFormTextarea')['BFormTextarea']
     BInput: typeof import('bootstrap-vue-next/components/BFormInput')['BInput']
+    BLink: typeof import('bootstrap-vue-next/components/BLink')['BLink']
+    BModal: typeof import('bootstrap-vue-next/components/BModal')['BModal']
     BOverlay: typeof import('bootstrap-vue-next/components/BOverlay')['BOverlay']
     BRow: typeof import('bootstrap-vue-next/components/BContainer')['BRow']
     BTable: typeof import('bootstrap-vue-next/components/BTable')['BTable']
     BToastOrchestrator: typeof import('bootstrap-vue-next/components/BToast')['BToastOrchestrator']
     GameserverCard: typeof import('./src/components/GameserverCard.vue')['default']
     GameserverCardBig: typeof import('./src/components/GameserverCardBig.vue')['default']
+    GameserverCardPlayerListing: typeof import('./src/components/GameserverCardPlayerListing.vue')['default']
+    GameserverCardPlayerMarquee: typeof import('./src/components/GameserverCardPlayerMarquee.vue')['default']
+    GameServers: typeof import('./src/components/GameServers.vue')['default']
     NetworkErrorOverlay: typeof import('./src/components/NetworkErrorOverlay.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+  }
+  export interface GlobalDirectives {
+    vBModal: typeof import('bootstrap-vue-next/directives/BModal')['vBModal']
   }
 }

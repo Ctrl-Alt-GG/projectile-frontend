@@ -29,6 +29,7 @@ const icons = {
     minecraft: mc,
     csstrike: css,
     factorygame: satisfactory,
+    ts3: teamspeak,
 }
 
 export default function getIcon(game) {
@@ -38,5 +39,4 @@ export default function getIcon(game) {
     }
     return icon;
 }
-
 

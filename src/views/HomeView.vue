@@ -1,11 +1,16 @@
 <template>
   <network-error-overlay :active="networkError"/>
-  <b-container>
-    <b-row class="py-3">
+  <b-container fluid>
+
+    <b-row class="py-3 header">
       <b-col>
-        <h1><img style="height: 1.2em" src="@/assets/logo-voros.svg">&nbsp;Ctrl-Alt-GG 2025</h1>
+        <div class="d-flex justify-content-between">
+          <h1><img style="height: 1.2em" src="@/assets/new_logo_icon.svg" alt="logo" class="pe-2">Ctrl-Alt-GG 2026</h1>
+        </div>
+
       </b-col>
     </b-row>
+
     <b-row class="px-2 py-4">
       <b-col>
         <div class="announcement-text">
@@ -13,25 +18,19 @@
         </div>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col>
-        <h2>Szerverek</h2>
-      </b-col>
-    </b-row>
-    <b-row class="mt-2">
-      <b-col>
 
-        <gameserver-card v-for="gameServer in liveData.gameServers" :gameServer="gameServer" class="my-2" />
-
-      </b-col>
+    <b-row class="px-2 mt-2">
+    <game-servers :gameServers="liveData.gameServers" display="desktop" />
     </b-row>
+
     <b-row class="py-5">
       <hr/>
       <div class="text-center">
-        Ctrl-Alt-GG 2025<br/>
+        Ctrl-Alt-GG 2026<br/>
         <a href="https://ctrl-alt-gg.hu" target="_blank">ctrl-alt-gg.hu</a>
       </div>
     </b-row>
+
   </b-container>
 </template>
 
@@ -39,9 +38,10 @@
 <script>
 import {inject} from 'vue'
 import NetworkErrorOverlay from "@/components/NetworkErrorOverlay.vue";
+import {BLink} from "bootstrap-vue-next";
 
 export default {
-  components: {NetworkErrorOverlay},
+  components: {BLink, NetworkErrorOverlay},
   setup() {
     const api = inject('$api');
     return {api}
@@ -92,5 +92,20 @@ export default {
   min-height: 2em;
   white-space: pre-wrap;
   line-height: 1.3em;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+.header {
+  background: rgb(99, 102, 241);
+  background: linear-gradient(
+      90deg,
+      rgba(99, 102, 241, 1) 0%,
+      rgba(168, 85, 247, 1) 50%,
+      rgba(236, 72, 153, 1) 100%
+  );
 }
 </style>
