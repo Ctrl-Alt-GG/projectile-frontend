@@ -19,9 +19,11 @@
       </b-col>
     </b-row>
 
-    <b-row class="px-2 mt-2">
+    <div class="px-1 mt-2"> <!-- https://github.com/metafizzy/isotope/issues/1112 -->
+    <b-row data-masonry='{"percentPosition": true }'>
     <game-servers :gameServers="liveData.gameServers" display="desktop" />
     </b-row>
+    </div>
 
     <b-row class="py-5">
       <hr/>
@@ -39,6 +41,8 @@
 import {inject} from 'vue'
 import NetworkErrorOverlay from "@/components/NetworkErrorOverlay.vue";
 import {BLink} from "bootstrap-vue-next";
+import Masonry from "masonry-layout"
+
 
 export default {
   components: {BLink, NetworkErrorOverlay},
@@ -76,6 +80,13 @@ export default {
     this.interval = setInterval(() => {
       this.update()
     }, 10000)
+
+    // initialize masonry
+    const row = document.querySelector("[data-masonry]");
+    new Masonry(row, {
+      // options
+      percentPosition: true,
+    });
   },
   unmounted() {
     if (this.interval !== null) {
