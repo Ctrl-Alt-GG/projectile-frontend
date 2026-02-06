@@ -10,14 +10,9 @@
     </div>
   </b-modal>
 
-  <b-container fluid class="my-3">
+  <b-container fluid class="mb-3">
 
-    <b-row>
-      <b-col md="6">
-        <img src="@/assets/logo-voros.svg" style="height: 5em"/> <span class="mx-2">GG-Admin</span>
-      </b-col>
-
-    </b-row>
+    <header-row title="GG Projectile Admin"/>
 
   </b-container>
   <!-- announcement -->
@@ -120,13 +115,14 @@
 
           <template #cell(__capabilities__)="data">
             <b-badge :variant="data.item.capabilities.player_count ? 'success' : 'secondary'">count</b-badge>&nbsp;
-            <b-badge :variant="data.item.capabilities.player_names ? 'success' : 'secondary'">names</b-badge><br>
+            <b-badge :variant="data.item.capabilities.player_names ? 'success' : 'secondary'">names</b-badge>
+            <br>
             <b-badge :variant="data.item.capabilities.player_score ? 'success' : 'secondary'">score</b-badge>&nbsp;
             <b-badge :variant="data.item.capabilities.player_team ? 'success' : 'secondary'">team</b-badge>&nbsp;
           </template>
 
           <template #cell(last_update)="data">
-          {{ (new Date(data.value)).toLocaleString("HU-hu") }}
+            {{ (new Date(data.value)).toLocaleString("HU-hu") }}
           </template>
 
           <template #cell(players)="data">
@@ -169,6 +165,7 @@ export default {
     return {
       badPW: false,
       password: "",
+
       interval: null,
       fields: [
         "id",
@@ -336,8 +333,3 @@ export default {
   }
 }
 </script>
-
-
-<style>
-
-</style>

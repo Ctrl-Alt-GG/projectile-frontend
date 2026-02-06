@@ -33,6 +33,7 @@ declare module 'vue' {
     GameserverCardPlayerListing: typeof import('./src/components/GameserverCardPlayerListing.vue')['default']
     GameserverCardPlayerMarquee: typeof import('./src/components/GameserverCardPlayerMarquee.vue')['default']
     GameServers: typeof import('./src/components/GameServers.vue')['default']
+    HeaderRow: typeof import('./src/components/HeaderRow.vue')['default']
     NetworkErrorOverlay: typeof import('./src/components/NetworkErrorOverlay.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

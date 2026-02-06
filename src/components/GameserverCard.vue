@@ -33,6 +33,11 @@
         <GameserverCardPlayerListing v-else :players="gameServer.players"
                                      :withScore="gameServer.capabilities.player_score"/>
       </div>
+      <div v-else>
+        <div v-if="display === 'wall'" :style="{height: '20px'}">
+
+        </div>
+      </div>
 
     </div>
   </div>
@@ -83,7 +88,6 @@ export default {
 
 
 <style scoped>
-
 ul {
   margin-bottom: 0.5rem;
   padding-left: 1rem;
@@ -114,6 +118,7 @@ li span {
   gap: 6px;
   padding: 4px 6px;
   border-bottom: 2px solid #000;
+  min-height: 40px;
 }
 
 .card-header img {
@@ -174,6 +179,4 @@ li span {
   text-align: right;
   font-family: monospace;
 }
-
-
 </style>

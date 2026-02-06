@@ -12,6 +12,7 @@
     "axios": "^1.13.4",
     "bootstrap": "^5.3.8",
     "bootstrap-vue-next": "^0.42.0",
+    "lodash": "^4.17.23",
     "masonry-layout": "^4.2.2",
     "vue": "^3.5.27",
     "vue-component-type-helpers": "^3.2.4",

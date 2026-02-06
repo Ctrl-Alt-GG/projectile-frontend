@@ -2,14 +2,7 @@
   <network-error-overlay :active="networkError"/>
   <b-container fluid>
 
-    <b-row class="py-3 header">
-      <b-col>
-        <div class="d-flex justify-content-between">
-          <h1><img style="height: 1.2em" src="@/assets/new_logo_icon.svg" alt="logo" class="pe-2">Ctrl-Alt-GG 2026</h1>
-        </div>
-
-      </b-col>
-    </b-row>
+    <header-row title="Ctrl-Alt-GG 2026" />
 
     <b-row class="px-2 py-4">
       <b-col>
@@ -20,9 +13,9 @@
     </b-row>
 
     <div class="px-1 mt-2"> <!-- https://github.com/metafizzy/isotope/issues/1112 -->
-    <b-row data-masonry='{"percentPosition": true }'>
-    <game-servers :gameServers="liveData.gameServers" display="desktop" />
-    </b-row>
+      <b-row data-masonry='{"percentPosition": true }'>
+        <game-servers :gameServers="sortedGameServers" display="desktop"/>
+      </b-row>
     </div>
 
     <b-row class="py-5">
@@ -42,7 +35,19 @@ import {inject} from 'vue'
 import NetworkErrorOverlay from "@/components/NetworkErrorOverlay.vue";
 import {BLink} from "bootstrap-vue-next";
 import Masonry from "masonry-layout"
+import _ from "lodash";
 
+function orderGameServersByIP(list) {
+  return _.sortBy(list, [
+    function (o) {
+      try {
+        return parseInt(o.addresses[0].split('.')[3], 10)
+      } catch {
+        return 100
+      }
+    }
+  ])
+}
 
 export default {
   components: {BLink, NetworkErrorOverlay},
@@ -53,21 +58,39 @@ export default {
   data() {
     return {
       networkError: false,
-      interval: null,
       liveData: {
         announcement: {
           text: "",
         },
         gameServers: []
       },
+      sortedGameServers: [],
+
+      // stuff
+      interval: null,
+      masonry: null
     }
   },
 
   methods: {
     update() {
       this.api.get("/bundle").then(res => {
-        this.liveData = res.data;
+        const changed = !_.isEqual(this.liveData, res.data);
         this.networkError = false;
+        // Update layout if needed
+
+        if (changed) {
+          this.liveData = res.data;
+          this.sortedGameServers = orderGameServersByIP(this.liveData.gameServers)
+
+          this.$nextTick(() => {
+            if (this.masonry !== null) {
+              this.masonry.reloadItems()
+              this.masonry.layout()
+            }
+          })
+        }
+
       }).catch(err => {
         console.error(err);
         this.networkError = true;
@@ -83,7 +106,7 @@ export default {
 
     // initialize masonry
     const row = document.querySelector("[data-masonry]");
-    new Masonry(row, {
+    this.masonry = new Masonry(row, {
       // options
       percentPosition: true,
     });
@@ -108,15 +131,5 @@ export default {
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
-}
-
-.header {
-  background: rgb(99, 102, 241);
-  background: linear-gradient(
-      90deg,
-      rgba(99, 102, 241, 1) 0%,
-      rgba(168, 85, 247, 1) 50%,
-      rgba(236, 72, 153, 1) 100%
-  );
 }
 </style>
