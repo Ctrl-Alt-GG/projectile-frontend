@@ -39,7 +39,7 @@
               <b-form-textarea
                   placeholder="empty"
                   v-model="newAnnouncement"
-                  v-on:keyup.ctrl.enter="setAnnouncement"
+                  @keyup.ctrl.enter="setAnnouncement"
               />
             </b-form-group>
             <div class="py-2 text-end">
@@ -91,7 +91,7 @@
 
           <template #cell(addresses)="data">
             <table>
-              <tr v-for="addr in data.value">
+              <tr v-for="addr in data.value" :key="addr">
                 <td class="px-2"><code>{{ addr }}</code></td>
               </tr>
             </table>
@@ -127,7 +127,7 @@
 
           <template #cell(players)="data">
             <table>
-              <tr v-for="ply in data.value">
+              <tr v-for="ply in data.value" :key="ply.name">
                 <td class="px-2"><b>{{ ply.name }}</b></td>
                 <td class="px-2" v-if="data.item.playersHasScore">{{ ply.score }}</td>
                 <td class="text-muted px-2"><small>{{ ply.info }}</small></td>
@@ -199,6 +199,12 @@ export default {
     }
   },
 
+  computed: {
+    authHeaders() {
+      return { Authorization: `Key ${this.password}` };
+    },
+  },
+
   methods: {
     getIcon,
     items(obj) {
@@ -245,9 +251,7 @@ export default {
     },
     getServers() {
       this.api.get("/admin/servers", {
-        headers: {
-          "Authorization": "Key " + this.password,
-        }
+        headers: this.authHeaders,
       }).then(res => {
         this.liveData = res.data;
       }).catch(err => {
@@ -257,10 +261,8 @@ export default {
     setAnnouncement() {
       this.announcementChangeInProgress = true
       this.api.put("/admin/announcement", {text: this.newAnnouncement}, {
-        headers: {
-          "Authorization": "Key " + this.password,
-        }
-      }).then(res => {
+        headers: this.authHeaders,
+      }).then(() => {
         this.announcementChangeInProgress = false
         this.getAnnouncement();
       }).catch(err => {
@@ -271,10 +273,8 @@ export default {
     clearAnnouncement() {
       this.announcementChangeInProgress = true
       this.api.delete("/admin/announcement", {
-        headers: {
-          "Authorization": "Key " + this.password,
-        }
-      }).then(res => {
+        headers: this.authHeaders,
+      }).then(() => {
         this.announcementChangeInProgress = false
         this.update();
       }).catch(err => {
@@ -284,9 +284,7 @@ export default {
     },
     getAnnouncement() {
       this.api.get("/admin/announcement", {
-        headers: {
-          "Authorization": "Key " + this.password,
-        }
+        headers: this.authHeaders,
       }).then(res => {
         this.announcement = res.data.text
       }).catch(err => {
@@ -296,10 +294,8 @@ export default {
     deleteServer(id) {
       this.gameServersChangeInProgress = true
       this.api.delete(`/admin/servers/${id}`, {
-        headers: {
-          "Authorization": "Key " + this.password,
-        }
-      }).then(res => {
+        headers: this.authHeaders,
+      }).then(() => {
         this.gameServersChangeInProgress = false
         this.update();
       }).catch(err => {

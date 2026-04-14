@@ -10,7 +10,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="ply in players">
+    <tr v-for="ply in players" :key="ply.name">
       <td>{{ ply.name }}</td>
       <td v-if="withScore">{{ ply.score }}</td>
     </tr>
@@ -20,7 +20,16 @@
 
 <script>
 export default {
-  props: ['players', 'withScore'],
+  props: {
+    players: {
+      type: Array,
+      default: () => [],
+    },
+    withScore: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
 

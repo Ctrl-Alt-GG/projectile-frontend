@@ -4,7 +4,12 @@
 
 <script>
 export default {
-  props: ['active'],
+  props: {
+    active: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
 

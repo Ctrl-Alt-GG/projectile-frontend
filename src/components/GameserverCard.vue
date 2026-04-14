@@ -1,7 +1,7 @@
 <template>
   <div class="server-card">
     <div class="card-header" :style="{background: getColor(gameServer.game).bg, color: getColor(gameServer.game).text}">
-      <img :src="getIcon(gameServer.game)" alt="">
+      <img :src="getIcon(gameServer.game)" :alt="gameServer.game">
       <div class="title">
         <div class="game-name">{{ gameServer.name }}</div>
         <div class="sub-info">{{ gameServer.info }}</div>
@@ -14,7 +14,7 @@
         <div v-if="display === 'desktop'">
           <strong>Addresses:</strong>
           <ul>
-            <li v-for="addr in gameServer.addresses">
+            <li v-for="addr in gameServer.addresses" :key="addr">
               <span>{{ addr }}</span>
             </li>
           </ul>
@@ -46,13 +46,17 @@
 <script>
 import getIcon from "@/data/icons.js";
 import getColor from "@/data/colors.js";
-import gameServers from "@/components/GameServers.vue";
 
 export default {
-  computed: {
-    gameServers() {
-      return gameServers
-    }
+  props: {
+    gameServer: {
+      type: Object,
+      required: true,
+    },
+    display: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
@@ -60,7 +64,6 @@ export default {
       interval: null
     }
   },
-  props: ['gameServer', 'display'],
   methods: {
     getIcon,
     getColor,
@@ -75,7 +78,7 @@ export default {
   mounted() {
     this.interval = setInterval(() => {
       this.i++;
-      if (this.i === this.gameServer.addresses.length) {
+      if (this.gameServer.addresses.length > 0 && this.i >= this.gameServer.addresses.length) {
         this.i = 0;
       }
     }, 7500)

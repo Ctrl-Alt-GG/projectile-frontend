@@ -4,14 +4,19 @@
   </div>
   <div class="player-ticker" v-else>
     <div class="ticker-track">
-      <span v-for="ply in players">{{ ply.name }}</span>
+    <span v-for="ply in players" :key="ply.name">{{ ply.name }}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['players'],
+  props: {
+    players: {
+      type: Array,
+      default: () => [],
+    },
+  },
 }
 </script>
 

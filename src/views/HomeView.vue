@@ -33,7 +33,6 @@
 <script>
 import {inject} from 'vue'
 import NetworkErrorOverlay from "@/components/NetworkErrorOverlay.vue";
-import {BLink} from "bootstrap-vue-next";
 import Masonry from "masonry-layout"
 import _ from "lodash";
 
@@ -50,7 +49,7 @@ function orderGameServersByIP(list) {
 }
 
 export default {
-  components: {BLink, NetworkErrorOverlay},
+  components: {NetworkErrorOverlay},
   setup() {
     const api = inject('$api');
     return {api}
@@ -126,10 +125,5 @@ export default {
   min-height: 2em;
   white-space: pre-wrap;
   line-height: 1.3em;
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
 }
 </style>

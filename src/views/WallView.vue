@@ -1,6 +1,6 @@
 <template>
   <network-error-overlay :active="networkError" />
-  <b-container fluid class="border-0">
+  <b-container fluid class="border-0 wall-view">
     <b-row class="px-2 py-4">
       <b-col>
         <div class="announcement-text">
@@ -56,8 +56,6 @@ export default {
     this.interval = setInterval(() => {
       this.update()
     }, 5000)
-
-    document.body.style.background = "#000"; // time constarint
   },
   unmounted() {
     if (this.interval !== null) {
@@ -68,9 +66,10 @@ export default {
 </script>
 
 <style scoped>
-body {
+.wall-view {
+  background: #000;
+  min-height: 100vh;
   margin: 0;
   font-family: system-ui, sans-serif;
 }
-
 </style>
