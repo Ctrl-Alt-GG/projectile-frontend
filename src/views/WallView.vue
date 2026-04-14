@@ -1,6 +1,6 @@
 <template>
   <network-error-overlay :active="networkError" />
-  <b-container fluid class="border-0 wall-view">
+  <b-container fluid class="border-0">
     <b-row class="px-2 py-4">
       <b-col>
         <div class="announcement-text">
@@ -52,12 +52,14 @@ export default {
   },
 
   mounted() {
+    document.body.classList.add('wall-bg')
     this.update()
     this.interval = setInterval(() => {
       this.update()
     }, 5000)
   },
   unmounted() {
+    document.body.classList.remove('wall-bg')
     if (this.interval !== null) {
       clearInterval(this.interval)
     }
@@ -65,10 +67,9 @@ export default {
 }
 </script>
 
-<style scoped>
-.wall-view {
+<style>
+.wall-bg {
   background: #000;
-  min-height: 100vh;
   margin: 0;
   font-family: system-ui, sans-serif;
 }
