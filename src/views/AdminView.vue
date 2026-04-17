@@ -225,7 +225,6 @@ export default {
     },
     pwUpdate() {
       this.badPW = false;
-      localStorage.setItem('KEY', this.password)
       this.update()
       this.interval = setInterval(() => {
         this.update()
@@ -235,7 +234,6 @@ export default {
       if (this.interval !== null) {
         clearInterval(this.interval)
       }
-      localStorage.removeItem('KEY')
       this.password = ""
       this.pwModal.show()
     },
@@ -309,10 +307,7 @@ export default {
     }
   },
   created() {
-    const key = localStorage.getItem('KEY')
-    if (key) {
-      this.password = key
-    }
+    this.password = ''
   },
   mounted() {
 
