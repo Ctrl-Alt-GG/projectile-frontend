@@ -13,23 +13,18 @@ declare module 'vue' {
   export interface GlobalComponents {
     BBadge: typeof import('bootstrap-vue-next/components/BBadge')['BBadge']
     BButton: typeof import('bootstrap-vue-next/components/BButton')['BButton']
-    BCard: typeof import('bootstrap-vue-next/components/BCard')['BCard']
-    BCardBody: typeof import('bootstrap-vue-next/components/BCard')['BCardBody']
-    BCardGroup: typeof import('bootstrap-vue-next/components/BCard')['BCardGroup']
     BCol: typeof import('bootstrap-vue-next/components/BContainer')['BCol']
     BContainer: typeof import('bootstrap-vue-next/components/BContainer')['BContainer']
     BForm: typeof import('bootstrap-vue-next/components/BForm')['BForm']
     BFormGroup: typeof import('bootstrap-vue-next/components/BFormGroup')['BFormGroup']
     BFormTextarea: typeof import('bootstrap-vue-next/components/BFormTextarea')['BFormTextarea']
     BInput: typeof import('bootstrap-vue-next/components/BFormInput')['BInput']
-    BLink: typeof import('bootstrap-vue-next/components/BLink')['BLink']
     BModal: typeof import('bootstrap-vue-next/components/BModal')['BModal']
     BOverlay: typeof import('bootstrap-vue-next/components/BOverlay')['BOverlay']
     BRow: typeof import('bootstrap-vue-next/components/BContainer')['BRow']
     BTable: typeof import('bootstrap-vue-next/components/BTable')['BTable']
     BToastOrchestrator: typeof import('bootstrap-vue-next/components/BToast')['BToastOrchestrator']
     GameserverCard: typeof import('./src/components/GameserverCard.vue')['default']
-    GameserverCardBig: typeof import('./src/components/GameserverCardBig.vue')['default']
     GameserverCardPlayerListing: typeof import('./src/components/GameserverCardPlayerListing.vue')['default']
     GameserverCardPlayerMarquee: typeof import('./src/components/GameserverCardPlayerMarquee.vue')['default']
     GameServers: typeof import('./src/components/GameServers.vue')['default']
@@ -37,8 +32,5 @@ declare module 'vue' {
     NetworkErrorOverlay: typeof import('./src/components/NetworkErrorOverlay.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-  }
-  export interface GlobalDirectives {
-    vBModal: typeof import('bootstrap-vue-next/directives/BModal')['vBModal']
   }
 }
