@@ -13,7 +13,7 @@
     </b-row>
 
     <div class="px-1 mt-2"> <!-- https://github.com/metafizzy/isotope/issues/1112 -->
-      <b-row data-masonry='{"percentPosition": true }'>
+      <b-row>
         <game-servers :gameServers="sortedGameServers" display="desktop"/>
       </b-row>
     </div>
@@ -34,7 +34,6 @@
 import {inject} from 'vue'
 import NetworkErrorOverlay from "@/components/NetworkErrorOverlay.vue";
 import {BLink} from "bootstrap-vue-next";
-import Masonry from "masonry-layout"
 import _ from "lodash";
 
 function orderGameServersByIP(list) {
@@ -68,7 +67,6 @@ export default {
 
       // stuff
       interval: null,
-      masonry: null
     }
   },
 
@@ -82,13 +80,6 @@ export default {
         if (changed) {
           this.liveData = res.data;
           this.sortedGameServers = orderGameServersByIP(this.liveData.gameServers)
-
-          this.$nextTick(() => {
-            if (this.masonry !== null) {
-              this.masonry.reloadItems()
-              this.masonry.layout()
-            }
-          })
         }
 
       }).catch(err => {
@@ -103,13 +94,6 @@ export default {
     this.interval = setInterval(() => {
       this.update()
     }, 10000)
-
-    // initialize masonry
-    const row = document.querySelector("[data-masonry]");
-    this.masonry = new Masonry(row, {
-      // options
-      percentPosition: true,
-    });
   },
   unmounted() {
     if (this.interval !== null) {
