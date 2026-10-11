@@ -30,7 +30,9 @@ export default {
 .player-ticker.empty {
   justify-content: center;
   font-size: 12px;
-  opacity: 0.6;
+  background: #121212;
+  color: #555555;
+  font-weight: bold;
 }
 
 /* Moving content */

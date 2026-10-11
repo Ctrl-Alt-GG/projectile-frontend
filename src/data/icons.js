@@ -6,7 +6,6 @@ import xonotic from "@/assets/gameicons/xonotic.svg"
 import scpsl from "@/assets/gameicons/scpsl.png"
 import mc from "@/assets/gameicons/mc.png"
 import quake3 from "@/assets/gameicons/quake3.png"
-// new in 2026
 import dods from "@/assets/gameicons/dods.png"
 import factorio from "@/assets/gameicons/factorio.png"
 import openarena from "@/assets/gameicons/openarena.png"

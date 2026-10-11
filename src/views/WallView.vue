@@ -1,7 +1,7 @@
 <template>
   <network-error-overlay :active="networkError" />
   <b-container fluid class="border-0">
-    <b-row class="px-2 py-4">
+    <b-row class="px-2 py-4" v-if="liveData.announcement.text && liveData.announcement.text !== ''">
       <b-col>
         <div class="announcement-text">
           {{ liveData.announcement.text }}
@@ -68,9 +68,15 @@ export default {
 </script>
 
 <style scoped>
+.announcement-text {
+  font-size: 1.2em;
+  min-height: 2em;
+  white-space: pre-wrap;
+  line-height: 1.3em;
+}
+
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
 }
-
 </style>

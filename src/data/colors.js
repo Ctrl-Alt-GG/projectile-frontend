@@ -28,7 +28,7 @@ colors.ts3 = colors.teamspeak
 export default function getColor(game) {
     const color = colors[game];
     if (color === undefined) {
-        return { bg: "#777", text: "#000" };
+        return { bg: "#bdbdbd", text: "#000" };
     }
     return color;
 }

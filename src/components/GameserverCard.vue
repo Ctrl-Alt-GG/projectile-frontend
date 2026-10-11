@@ -1,5 +1,5 @@
 <template>
-  <div class="server-card">
+  <div :class="{'server-card': true, 'active': gameServer.capabilities.player_count && gameServer.online_players > 0}">
     <div class="card-header" :style="{background: getColor(gameServer.game).bg, color: getColor(gameServer.game).text}">
       <img :src="getIcon(gameServer.game)" alt="">
       <div class="title">
@@ -23,7 +23,7 @@
           <strong>Address:</strong>&nbsp;{{ gameServer.addresses[i] }}
         </div>
 
-        <div>
+        <div :class="{'empty': gameServer.capabilities.player_count && gameServer.online_players === 0, 'playerCount':true}">
           <strong>Players:</strong>&nbsp;{{ formatPlayerCount(gameServer) }}
         </div>
       </div>
@@ -34,6 +34,7 @@
                                      :withScore="gameServer.capabilities.player_score"/>
       </div>
       <div v-else>
+        <!-- empty placeholder when player names capability is unavailable -->
         <div v-if="display === 'wall'" :style="{height: '20px'}">
 
         </div>
@@ -108,6 +109,24 @@ li span {
   background: #1a1a1a;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.server-card.active {
+  border: 2px solid #777;
+  background: #222222;
+}
+
+.server-card.active:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+
+  box-shadow: #777 0 0 15px;
 }
 
 /* -------- Header -------- */
@@ -147,36 +166,15 @@ li span {
   font-size: 13px;
 }
 
+.playerCount.empty {
+  color: #555555;
+}
+
 /* Metadata block */
 .meta {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2px;
   margin-bottom: 4px;
-}
-
-/* -------- Player table -------- */
-
-.players {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
-
-.players th,
-.players td {
-  border: 1px solid #444;
-  padding: 2px 4px;
-}
-
-.players th {
-  background: #222;
-  text-align: left;
-}
-
-.players td:last-child,
-.players th:last-child {
-  text-align: right;
-  font-family: monospace;
 }
 </style>

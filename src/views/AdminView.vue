@@ -113,12 +113,18 @@
             {{ data.item.online_players }} / {{ data.item.max_players }}
           </template>
 
-          <template #cell(__capabilities__)="data">
-            <b-badge :variant="data.item.capabilities.player_count ? 'success' : 'secondary'">count</b-badge>&nbsp;
-            <b-badge :variant="data.item.capabilities.player_names ? 'success' : 'secondary'">names</b-badge>
-            <br>
-            <b-badge :variant="data.item.capabilities.player_score ? 'success' : 'secondary'">score</b-badge>&nbsp;
-            <b-badge :variant="data.item.capabilities.player_team ? 'success' : 'secondary'">team</b-badge>&nbsp;
+          <template #cell(__scraper__)="data">
+            <div>
+              <code>{{ data.item.internal.scraper }}</code>
+            </div>
+
+            <div>
+              <b-badge :variant="data.item.capabilities.player_count ? 'success' : 'secondary'">count</b-badge>&nbsp;
+              <b-badge :variant="data.item.capabilities.player_names ? 'success' : 'secondary'">names</b-badge>
+              <br>
+              <b-badge :variant="data.item.capabilities.player_score ? 'success' : 'secondary'">score</b-badge>&nbsp;
+              <b-badge :variant="data.item.capabilities.player_team ? 'success' : 'secondary'">team</b-badge>&nbsp;
+            </div>
           </template>
 
           <template #cell(last_update)="data">
@@ -126,10 +132,10 @@
           </template>
 
           <template #cell(players)="data">
-            <table>
+            <table class="striped-table">
               <tr v-for="ply in data.value">
                 <td class="px-2"><b>{{ ply.name }}</b></td>
-                <td class="px-2" v-if="data.item.playersHasScore">{{ ply.score }}</td>
+                <td class="px-2" v-if="data.item.capabilities.player_score">{{ ply.score }}</td>
                 <td class="text-muted px-2"><small>{{ ply.info }}</small></td>
               </tr>
             </table>
@@ -178,8 +184,12 @@ export default {
           label: "Players",
         },
         {
-          key: "__capabilities__",
-          label: "Capabilities",
+          key: "__scraper__",
+          label: "Scraper",
+        },
+        {
+          key: "internal.agent_version",
+          label: "Agent version",
         },
         "last_update",
         "players",
@@ -333,3 +343,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+table.striped-table tr:nth-child(odd) {
+  background: #ffffff1a;
+}
+
+</style>

@@ -29,11 +29,12 @@ export default {
 
 .players-placeholder {
   width: 100%;
-  background: #222;
   border: 1px solid #444;
   padding: 2px 4px;
   text-align: center;
-  color: #aaa;
+  background: #121212;
+  color: #555555;
+  font-weight: bold;
 }
 
 /* -------- Player table -------- */
